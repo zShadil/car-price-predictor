@@ -1,180 +1,166 @@
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Roboto', 'Montserrat', sans-serif;
+        background: linear-gradient(135deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+        animation: gradientBG 10s ease-in-out infinite alternate;
+        overflow-x: hidden;
+      }
+      .container {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px 0 rgba(44, 62, 80, 0.18);
+        padding: 44px 38px 32px 38px;
+        width: 100%;
+        max-width: 480px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+      }
+      .logo {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #2980b9 60%, #6dd5fa 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 18px;
+        box-shadow: 0 2px 8px rgba(44, 62, 80, 0.10);
+      }
+      .logo span {
+        font-size: 2.1rem;
+        color: #fff;
+        font-weight: 700;
+        font-family: 'Montserrat', sans-serif;
+        letter-spacing: 1px;
+      }
+      .container h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #2980b9;
+        margin-bottom: 24px;
+        letter-spacing: 1px;
+        text-align: center;
+      }
+      form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      label {
+        font-weight: 600;
+        color: #34495e;
+        font-size: 1rem;
+        margin-bottom: 2px;
+      }
+      input, select {
+        padding: 11px 13px;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+        font-size: 1rem;
+        background: #f8fafc;
+        transition: border 0.2s, box-shadow 0.2s;
+      }
+      input:focus, select:focus {
+        outline: none;
+        border-color: #2980b9;
+        box-shadow: 0 0 0 2px rgba(41, 128, 185, 0.13);
+      }
+      button {
+        margin-top: 12px;
+        padding: 14px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(90deg, #2980b9 0%, #6dd5fa 100%);
+        color: #fff;
+        font-size: 1.13rem;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 4px 16px rgba(41, 128, 185, 0.10);
+        transition: background 0.2s, transform 0.2s;
+        letter-spacing: 0.5px;
+      }
+      button:hover {
+        background: linear-gradient(90deg, #6dd5fa 0%, #2980b9 100%);
+        transform: translateY(-2px) scale(1.03);
+      }
+      .note {
+        margin-top: 18px;
+        font-size: 0.97rem;
+        color: #7f8c8d;
+        text-align: center;
+      }
+      .prediction-card {
+        margin-top: 28px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: linear-gradient(90deg, #e0f7fa 0%, #b2ebf2 100%);
+        border-radius: 14px;
+        box-shadow: 0 2px 12px rgba(22, 160, 133, 0.10);
+        padding: 22px 18px 18px 18px;
+        min-width: 260px;
+        max-width: 100%;
+        border: 1.5px solid #16a08533;
+        font-size: 1.18rem;
+        font-weight: 600;
+        color: #138d75;
+        position: relative;
+        animation: fadeIn 0.7s;
+      }
+      .prediction-card .icon {
+        font-size: 2.2rem;
+        margin-bottom: 8px;
+        color: #16a085;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @media (max-width: 600px) {
+        .container {
+          padding: 22px 6vw 18px 6vw;
+          max-width: 98vw;
+        }
+      }
+    </style>
+  </head>
 
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Car Price Predictor</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    body {
-      min-height: 100vh;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(120deg, #2980b9 0%, #6dd5fa 100%);
-      font-family: 'Roboto', 'Montserrat', sans-serif;
-    }
-    .container {
-      background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 8px 32px 0 rgba(44, 62, 80, 0.18);
-      padding: 44px 38px 32px 38px;
-      width: 100%;
-      max-width: 440px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-    }
-    .logo {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, #2980b9 60%, #6dd5fa 100%);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 18px;
-      box-shadow: 0 2px 8px rgba(44, 62, 80, 0.10);
-    }
-    .logo span {
-      font-size: 2.1rem;
-      color: #fff;
-      font-weight: 700;
-      font-family: 'Montserrat', sans-serif;
-      letter-spacing: 1px;
-    }
-    .container h1 {
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: #2980b9;
-      margin-bottom: 24px;
-      letter-spacing: 1px;
-      text-align: center;
-    }
-    form {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    label {
-      font-weight: 600;
-      color: #34495e;
-      font-size: 1rem;
-      margin-bottom: 2px;
-    }
-    input, select {
-      padding: 11px 13px;
-      border-radius: 8px;
-      border: 1px solid #e0e0e0;
-      font-size: 1rem;
-      background: #f8fafc;
-      transition: border 0.2s, box-shadow 0.2s;
-    }
-    input:focus, select:focus {
-      outline: none;
-      border-color: #2980b9;
-      box-shadow: 0 0 0 2px rgba(41, 128, 185, 0.13);
-    }
-    button {
-      margin-top: 12px;
-      padding: 14px;
-      border: none;
-      border-radius: 10px;
-      background: linear-gradient(90deg, #2980b9 0%, #6dd5fa 100%);
-      color: #fff;
-      font-size: 1.13rem;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 4px 16px rgba(41, 128, 185, 0.10);
-      transition: background 0.2s, transform 0.2s;
-      letter-spacing: 0.5px;
-    }
-    button:hover {
-      background: linear-gradient(90deg, #6dd5fa 0%, #2980b9 100%);
-      transform: translateY(-2px) scale(1.03);
-    }
-    .note {
-      margin-top: 18px;
-      font-size: 0.97rem;
-      color: #7f8c8d;
-      text-align: center;
-    }
-    .prediction-card {
-      margin-top: 28px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background: linear-gradient(90deg, #e0f7fa 0%, #b2ebf2 100%);
-      border-radius: 14px;
-      box-shadow: 0 2px 12px rgba(22, 160, 133, 0.10);
-      padding: 22px 18px 18px 18px;
-      min-width: 260px;
-      max-width: 100%;
-      border: 1.5px solid #16a08533;
-      font-size: 1.18rem;
-      font-weight: 600;
-      color: #138d75;
-      position: relative;
-      animation: fadeIn 0.7s;
-    }
-    .prediction-card .icon {
-      font-size: 2.2rem;
-      margin-bottom: 8px;
-      color: #16a085;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    footer {
-      margin-top: 32px;
-      color: #fff;
-      font-size: 0.98rem;
-      text-align: center;
-      opacity: 0.85;
-      letter-spacing: 0.2px;
-    }
-    @media (max-width: 600px) {
-      .container {
-        padding: 22px 6vw 18px 6vw;
-        max-width: 98vw;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="logo"><span>🚗</span></div>
-    <h1>Car Price Predictor</h1>
-    <form action="/predict" method="post">
-      <div class="form-group">
-        <label for="year">Year</label>
-        <input type="number" id="year" name="year" placeholder="e.g. 2010" required />
-      </div>
-      <div class="form-group">
-        <label for="showroom_price">Showroom Price (lakhs)</label>
-        <input type="number" step="0.01" id="showroom_price" name="showroom_price" placeholder="e.g. 10.45" required />
-      </div>
-      <div class="form-group">
-        <label for="kms_driven">Kilometers Driven</label>
-        <input type="number" id="kms_driven" name="kms_driven" placeholder="e.g. 10000" required />
-      </div>
-      <div class="form-group">
-        <label for="owners">Previous Owners</label>
-        <input type="number" id="owners" name="owners" placeholder="0 / 1 / 2" required />
-      </div>
-      <div class="form-group">
+       <form action="/predict" method="post">
+         <div class="form-group">
+           <label for="year">Year</label>
+           <input type="number" id="year" name="year" placeholder="e.g. 2010" required />
+         </div>
+         <div class="form-group">
+           <label for="showroom_price">Showroom Price (lakhs)</label>
+           <input type="number" step="0.01" id="showroom_price" name="showroom_price" placeholder="e.g. 10.45" required />
+         </div>
+         <div class="form-group">
+           <label for="kms_driven">Kilometers Driven</label>
+           <input type="number" id="kms_driven" name="kms_driven" placeholder="e.g. 10000" required />
+         </div>
+         <div class="form-group">
+           <label for="owners">Previous Owners</label>
+           <input type="number" id="owners" name="owners" placeholder="0 / 1 / 2" required />
+         </div>
         <label for="fuel">Fuel Type</label>
         <select id="fuel" name="fuel">
           <option value="Petrol">Petrol</option>
@@ -206,8 +192,6 @@
       </div>
     {% endif %}
   </div>
-  <footer>
-    &copy; 2026 Car Price Predictor &mdash; Powered by Flask &amp; Machine Learning
-  </footer>
+  
 </body>
 </html>
